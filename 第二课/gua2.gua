@@ -1,0 +1,201 @@
+const polygon = function(bianchang, bianshu=3) {
+    var w = bianchang
+    var n = bianshu
+    var 内角 = (n - 2) * 180 / n
+    var degree = 180 - 内角
+
+    var i = 0
+    while(i < n) {
+        forward(w)
+        
+        right(degree)
+
+        // 特别注意，循环结束前一定要改变 i 的值
+        // 否则循环永远不会结束的
+        i = i + 1
+    }
+}
+
+const polygon1 = function(bianchang, gao, bianshu=3) {
+    var w = bianchang
+    var h = gao
+    var n = bianshu
+    var 内角 = (n - 2) * 180 / n
+    var degree = 180 - 内角
+
+    var i = 0
+    while(i < n) {
+        if(i % 2) {
+          forward(h)
+        } else {
+            forward(w)
+        }
+        right(degree)
+
+        // 特别注意，循环结束前一定要改变 i 的值
+        // 否则循环永远不会结束的
+        i = i + 1
+    }
+}
+
+const jump = function(x, y) {
+    penup()
+    goto(x, y)
+    pendown()
+}
+
+
+const circle = function(x, y, r) {
+    var x1 = x
+    var y1 = y - r
+    var n = 36
+
+    var bianchang = (2 * math.pi * r) / n 
+    jump(x1, y1)
+
+    polygon(bianchang, n)
+}
+
+const penta = function(x, y, long) {
+    var degree = 144
+    var n = 5
+    var bianchang = long
+    jump(x, y)
+
+     
+    var i = 0
+    while(i < n) {
+        right(degree)
+        forward(bianchang)
+        // 特别注意，循环结束前一定要改变 i 的值
+        // 否则循环永远不会结束的
+        i = i + 1
+    }
+}
+
+const japan = function(x, y) {
+    var bianchang = 300
+    var r1 = bianchang * 0.6
+    var r2 = r1 / 2 //半径
+    var cx = bianchang / 2 + x
+    var cy = bianchang / 2 + y
+
+    jump(x, y) 
+    polygon(300, 4)
+
+    circle(cx, cy, r2)
+}
+
+
+const sin = function(degree) {
+    // 这里的 sin 函数接受弧度作为参数
+    // 我们这个函数接受角度, 下面是弧度转角度的公式
+    var radians = degree * math.pi / 180
+    return math.sin(radians)
+}
+
+const cos = function(degree) {
+    var radians = degree * math.pi / 180
+    return math.cos(radians)
+}
+
+var penta1 = function(x, y, r) {
+    var du = 18
+    var x1 = x - cos(du) * r
+    var y1 = y - sin(du) * r
+    var long = cos(du) * r * 2
+
+    penta(x1, y1, long)
+}
+
+const china = function(x, y) {
+    var w = 300
+    var h = 200
+    var r = 20
+    var x1 = x + w / 2
+    var y1 = y + h / 2
+    var n = 4
+    var cn = 5
+    jump(x, y)
+    polygon1(w, h, n)
+
+    // const wxBig = function(x, y, r) {
+    //     cn -= 1
+    //     var xb = x + 20
+    //     var yb = y + 20
+
+    //     penta1(xb, yb, r)
+    // } 
+
+    // wxBig(x, y, 30)
+    while(cn > 0) {
+        cn -= 1
+        penta1(x1, y1, r)
+        x1 = x1 + 20 * 2
+    }
+
+}
+
+const france = function(x, y) {
+    jump(x, y)
+    var w = 300
+    var h = 200
+    var  bianshu = 4
+    var n = 0
+    var h1 = 0
+    var h2 = 2 / 3 * h
+
+    var x1 = 0
+    var y1 = 0
+
+    while(n < 3) {
+        h1  = (1 / 3 * h)
+        polygon1(w, h1, bianshu)
+        x1 = x 
+        y1 = -(y1 + y + h1)
+        jump(x1, y1)
+
+        n += 1
+    }
+   
+}
+
+const gambia = function(x, y) {
+    france(x, y)
+
+}
+
+const germany = function(x, y) {
+    jump(x, y)
+    var w = 300
+    var h = 300
+    var  bianshu = 4
+    var n = 3
+
+    while(n > 0) {
+        var w1 = 1 / 3 * w
+        polygon1(w1, h, bianshu)
+
+        n -= 1
+    }
+
+}
+
+const _main = function() {
+    // circle(-100, -100, 50) // 圆形
+
+    // penta(0, 0, 50) // 正五角星
+
+    // japan(-100, -150) // 日本国旗
+
+    // penta1(0, 0, 50) // 五角星函数
+
+    //  china(-200, -160) // 国旗
+
+    //  france(-100, -150) // 法国国旗
+
+    //  germany(-100, -150) // 画德国国旗
+
+    gambia(-100, -150)
+}
+_main()
