@@ -1,0 +1,142 @@
+const test = function(ok, err) {
+    if(ok) {
+        log('测试OK')
+    } else {
+        log('测试错误', err)
+    }
+}
+
+const find = function(s1, s2) {
+    // s1 s2 都是 string
+    // 但 s2 的长度是 1
+    //
+    // 返回 s2 在 s1 中的下标, 从 0 开始, 如果不存在则返回 -1
+    var n = 0
+    var index = -1
+
+    while(n < s1.length()) {
+        if(s1[n] == s2) {
+            index = n
+            return index
+        }
+        n += 1
+    }
+
+    return index
+}
+
+// 测试函数
+const test_find = function() {
+    test(find('hello', 'a') == -1, 'find 1')
+    test(find('hello', 'e') == 1, 'find 2')
+    test(find('hello', 'l') == 2, 'find 3')
+}
+
+// 下面给出一个例子作为后面作业的参考
+// 返回字符串的小写形式的函数
+// 注意, 这里假设了 s 字符串全是大写字母
+const lowercase = function(s) {
+    // 这里是两个字符串, 包含了大写字母和小写字母
+    var lower = 'abcdefghijklmnopqrstuvwxyz'
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 初始化一个空字符串
+    var result = ""
+    var i = 0
+    while (i < s.length()) {
+        // 注意, 这个 find 是你要实现的函数
+        var index = find(upper, s[i])
+        // 字符串可以用加号拼接, 不明白可以 log 一下
+        result += lower[index]
+        i += 1
+    }
+    return result
+}
+
+// 作业 2
+//
+// 定义一个函数
+// 参数是一个字符串 s
+// 返回大写后的字符串
+// 注意, 假设 s 字符串全是小写字母
+//
+// 实现步骤
+//     1. 遍历字符串 s，使用作业 1 的 find 函数找到 s 中的每一位元素在 lower 中的 index，
+//     2. 得到 index 之后，就知道这个元素对应的大写字母是什么，大小写字母的 index 是相同的
+//     3. 累加这些大写字符之后的结果就是 s 对应的大写后的字符串
+const uppercase = function(s) {
+    // 这里是两个字符串, 包含了大写字母和小写字母
+    var lower = 'abcdefghijklmnopqrstuvwxyz'
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 初始化一个空字符串
+    var result = ""
+    var i = 0
+    while (i < s.length()) {
+        // 注意, 这个 find 是你要实现的函数
+        var index = find(lower, s[i])
+        // 字符串可以用加号拼接, 不明白可以 log 一下
+        result += upper[index]
+        i += 1
+    }
+    return result
+}
+
+const test_uppercase = function() {
+    test(uppercase('hello') == 'HELLO', 'uppercase 1')
+    test(uppercase('gua') == 'GUA', 'uppercase 2')
+}
+
+// 作业 3
+//
+// 实现 lowercase1
+// 它能正确处理带 小写字母 的字符串
+//
+// 实现步骤
+//     1. 遍历字符串 s，如果 s 中的元素是大写字母（即这个元素被 upper 字符串包含）
+//          就调用 lowercase 函数。
+//     2. 如果 s 中的元素是小写字母，直接拼接即可
+const small = function(index) {
+    if(index > 0) {
+
+    }
+}
+const lowercase1 = function(s) {
+    // 这里是两个字符串, 包含了大写字母和小写字母
+    var lower = 'abcdefghijklmnopqrstuvwxyz'
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 初始化一个空字符串
+    var result = ""
+    var i = 0
+
+    while (i < s.length()) {
+        // 注意, 这个 find 是你要实现的函数
+        var index = find(upper, s[i])
+        // 字符串可以用加号拼接, 不明白可以 log 一下
+        if(index > 0) { // 返回 正确index 转换小写
+            result += lower[index]
+        } else { //说明不是大写 无须转换
+            result += s[i]
+        }
+        i += 1
+    }
+    return result
+}
+
+const test_lowercase1 = function() {
+    test(lowercase1('heLLo') == 'hello', 'lowercase1 1')
+    test(lowercase1('gua') == 'gua', 'lowercase1 2')
+    test(lowercase1('GW') == 'gw', 'lowercase1 3')
+}
+
+
+
+
+const _main = function() {
+    // test_find()
+    test_uppercase()
+    test_lowercase1()
+
+
+}
+
+
+_main() 
