@@ -193,18 +193,20 @@ const franceSamll = function(x, y) {
     var bianshu = 4
 
     var x1 = x
-    var y1 = y + h1
-    var y2 = y + h2
-    var y3 = y + h3
-
+    var y1 = y 
+    var y2 = y1 + h1
+    var y3 = y2 + h2
+ 
+    log('h',h, h1, h2, h3)
+    log('y', y, y1, y2, y3)
     jump(x1, y1)
     polygon1(w, h1, bianshu)
-
+    
     jump(x1, y2)
     polygon1(w, h2, bianshu)
 
     jump(x1, y3)
-    polygon1(w, h3, bianshu)
+    polygon1(w, h1, bianshu)
 
 }
 const gambia = function(x, y) {
