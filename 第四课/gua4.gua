@@ -218,7 +218,7 @@ const _main = function() {
     // test_lowercase1()
     // test_uppercase1()
     test_encode1()
-
+   // 晕 发现早做过一次 
 
 
 }
