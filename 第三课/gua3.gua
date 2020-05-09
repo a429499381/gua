@@ -116,15 +116,66 @@ const sum1 = function(n) {
     return string
 }
 
+const sum2 = function(n) {
+    var long = 1
+    var num = 2
+    var string = '1'
+
+    const numToStr = function(number) {
+        var s =  str(number) // 数字转字符
+        // log('str num', s)
+        return s
+    }
+    while(long < n) {
+        if(long % 2) {
+            string += '+' + numToStr(num)
+        } else {
+            string += '-' + numToStr(num)
+        }
+         num += 1  
+         long += 1 // 循环减去 
+    }
+
+    log('str', string)
+    return string
+}
+
+
+//
+// 实现 fac 函数
+// 接受一个参数 n
+// 返回 n 的阶乘, 1 * 2 * 3 * ... * n
+// 计算从 1 到 n 的阶乘，重复了 n 次，所以可以用循环来处理
+//
+const fac = function(n) {
+    var max = n
+    var min = 2
+    var result = '1'
+
+    while(min <= max) {
+        var strT = str(min)
+        log('strT', strT)
+        result += '*' + strT
+
+        min += 1
+    }
+
+    log('result', result)
+    return result
+}
+
 
 const _main = function() {
      var arr = [1, 2, -4, 2, 1]
     //  product(arr)
     // test_abs()
-//    test_average()
+    //    test_average()
     // test_min()
 
-    sum1(15)
+    // sum1(15)
+    // sum2(15)
+
+    fac(5)
 }
 
 
