@@ -128,12 +128,97 @@ const test_lowercase1 = function() {
 }
 
 
+// 作业 4
+//
+// 实现 uppercase1
+// 它能正确处理带 大写字母 的字符串
+//
+// 实现步骤
+//     1. 参考作业 3
+const uppercase1 = function(s) {
+    // 这里是两个字符串, 包含了大写字母和小写字母
+    var lower = 'abcdefghijklmnopqrstuvwxyz'
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 初始化一个空字符串
+    var result = ""
+    var i = 0
+
+    while (i < s.length()) {
+        // 注意, 这个 find 是你要实现的函数
+        var index = find(lower, s[i])
+        // 字符串可以用加号拼接, 不明白可以 log 一下
+        if(index > 0) { // 返回 正确index 转换
+            result += upper[index]
+        } else { //说明不是 无须转换
+            result += s[i]
+        }
+        i += 1
+    }
+    return result
+}
+
+const test_uppercase1 = function() {
+    test(uppercase1('helLo') == 'HELLO', 'uppercase1 1')
+    test(uppercase1('gUA') == 'GUA', 'uppercase1 2')
+}
+
+// 作业 5
+// 实现一个叫 凯撒加密 的加密算法, 描述如下
+// 对于一个字符串, 整体移位, 就是加密
+// 以右移 1 位为例
+// 原始信息 'afz' 会被加密为 'bga'
+// 实现 encode1 函数, 把明文加密成密码并返回
+// 右移 1 位
+//
+// 注意:
+//     s 是一个只包含小写字母的字符串
+//
+// 实现步骤
+//     1. 遍历字符串 s，找出每一位元素在 lower 中的 index，然后找出 lower 中 index + 1 的元素，拼接在一起
+//     2. 注意考虑边界情况，如果计算出来 index 25(也就是字符 'z')，则取出第一位元素（也就是 'a'）
+const encode1 = function(s) {
+    // 这里是两个字符串, 包含了大写字母和小写字母
+    var lower = 'abcdefghijklmnopqrstuvwxyz'
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 初始化一个空字符串
+    var result = ""
+    var i = 0
+    var newIndex = 0
+
+    while (i < s.length()) {
+        // 注意, 这个 find 是你要实现的函数
+        var index = find(lower, s[i])
+        // 如果 index 是 字符串最后一个 'z' 
+        if(index == lower.length() - 1) {
+            newIndex = 0
+            result += lower[newIndex]  
+        } else {
+            if(index >= 0) { 
+                newIndex = index + 1
+                result += lower[newIndex]   
+            }
+        }
+       
+        i += 1
+    }
+    return result
+}
+
+const test_encode1 = function() {
+    test(encode1('afz') == 'bga', 'encode1 1')
+    test(encode1('gw') == 'hx', 'encode1 2')
+}
+
+
 
 
 const _main = function() {
     // test_find()
-    test_uppercase()
-    test_lowercase1()
+    // test_uppercase()
+    // test_lowercase1()
+    // test_uppercase1()
+    test_encode1()
+
 
 
 }
