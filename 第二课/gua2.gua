@@ -16,7 +16,7 @@ const polygon = function(bianchang, bianshu=3) {
     }
 }
 
-const polygon1 = function(bianchang, gao, bianshu=3) {
+const polygon1 = function(bianchang, gao, bianshu=4) {
     var w = bianchang
     var h = gao
     var n = bianshu
@@ -54,6 +54,21 @@ const circle = function(x, y, r) {
     jump(x1, y1)
 
     polygon(bianchang, n)
+}
+const rect = function(x, y, w, h) {
+    var x1 = x 
+    var y1 = y 
+   
+    jump(x1, y1)
+    polygon1(w, h)
+}
+
+const center_rect = function(x, y, w, h) {
+    var x1 = x - w / 2
+    var y1 = y - h / 2
+   
+    jump(x1, y1)
+    polygon1(w, h)
 }
 
 const penta = function(x, y, long) {
@@ -231,6 +246,64 @@ const germany = function(x, y) {
 
 }
 
+
+// 作业 10
+// 画 瑞士国旗
+// switzerland(x, y)
+
+// 实现步骤
+//     瑞士国旗由一个大矩形和两个小矩形组成, 需要画三个矩形
+
+// 分步提示:
+// 1. 瑞士国旗中的两个矩形大小是一样的, 都按照长边 75, 短边 25 来计算
+// 2. 计算出三个矩形的中心点坐标、长、宽
+// 3. 依次画出这三个矩形
+
+const switzerland = function(x, y) {
+    var w = 200
+    var h = 150
+    var w1 = 75
+    var h1 = 25
+    var bianshu = 4
+
+    var x1  = x + w / 2
+    var y1 = y + w / 2
+
+    center_rect(x1, y1, w, h)
+    center_rect(x1, y1, w1, h1)
+    center_rect(x1, y1, h1, w1)
+
+
+} 
+const  northkorea = function(x, y) {
+    var w = 200
+    var h = 150
+
+    var h1 = 4 / 25 * h
+    var h2 = 1 / 25 * h
+    var h3 = 15 / 25 * h
+    var h4 = 1 / 25 * h
+    var h5 = 4 / 25 * h
+
+    var x1 = x
+    var y1 = y
+    var y2 = y1 + h1
+    var y3 = y2 + h2
+    var y4 = y3 + h3
+    var y5 = y4 + h4
+
+    // rect(x1, y1, w, h1)
+    // rect(x1, y2, w, h2)
+    rect(x1, y3, w, h3)
+    // rect(x1, y4, w, h4)
+    // rect(x1, y5, w, h5)
+
+    var xn = x + w * 2 / 5
+    var yn = y + h / 2
+    var rn = h3 / 3
+    circle(xn, yn, rn)
+    penta(xn, yn, rn)
+}
 const _main = function() {
     // circle(-100, -100, 50) // 圆形
 
@@ -246,6 +319,12 @@ const _main = function() {
 
     //  germany(-100, -150) // 画德国国旗
 
-    gambia(-100, -100)
+    // gambia(-100, -100) // 冈比亚国旗
+
+    // switzerland(-100, -100)
+
+    // center_rect(-100, -100, 50, 100)
+
+    northkorea(-100, -100)
 }
 _main()
