@@ -380,35 +380,22 @@ const strip_left = function(s) {
     
     // 返回 string
     var str = s
-    var nStr = s.length() - 1
-    var space = ' '
-    var right = -1
-    var left = -1
     var n = 0
-    // 返回 布尔值, 如果 s 中包含的只有空格则返回 true, 否则返回 false
-    if(not str) {
-        return ''
-    }
-    if(is_space(str)) {
-        return space
-    }
+    var space = '1'
+    
     while(n < str.length()) {
-        if(not str[n] == ' ') {
-            log('n 不是空格', str[n])
-            return  str.cut(n)
-        }
-        log('n is n', str[n], n)
-        if(str[n] == ' ') {
-            left = n + 1
-            str = str.cut(left)
-            log('str is',str, left, n)
+        log('str[n]',  str[n])
+    
+        if(str[n] ==  space) {
+            str = str.cut(n + 1)
+            log('str is space', str)
         } else {
-            n += 1
+            log('不是空格')
+            return str.cut[n]
         }
+        n += 1
     }
-    log('str',str)
     return str
-
     // 实现步骤
     // 从左侧遍历字符串, 记录第一个非空格字符的位置, 并由此切割字符串
     // 1. 使用作业 5 的 is_space 函数来判断 s 是否只包含空格，
@@ -420,7 +407,7 @@ const strip_left = function(s) {
 // 测试函数
 const test_strip_left = function() {
     // ensure(strip_left('  gua') == 'gua', 'strip_left 测试 1')
-    ensure(strip_left(' gua  ') == 'gua  ', 'strip_left 测试 2')
+    ensure(strip_left('111gua111') == 'gua  ', 'strip_left 测试 2')
     // ensure(strip_left('') == '', 'strip_left 测试 3')
     // ensure(strip_left('    ') == '', 'strip_left 测试 4')
 }
