@@ -180,12 +180,37 @@ const france1 = function(x, y) {
         
         n += 1
     }
-   
+    y1 =  y + h1 
+   return  y1
 }
 
-const gambia = function(x, y) {
-    france1(x, y)
+const franceSamll = function(x, y) {
+    var w = 300
+    var h = 200 * 0.3
+    var h1 = h * 1 / 8
+    var h2 = h * 6 / 8
+    var h3 = h * 1 / 8
+    var bianshu = 4
 
+    var x1 = x
+    var y1 = y + h1
+    var y2 = y + h2
+    var y3 = y + h3
+
+    jump(x1, y1)
+    polygon1(w, h1, bianshu)
+
+    jump(x1, y2)
+    polygon1(w, h2, bianshu)
+
+    jump(x1, y3)
+    polygon1(w, h3, bianshu)
+
+}
+const gambia = function(x, y) {
+   var x1 = x 
+   var y1 =  france1(x, y)
+    franceSamll(x1, y1)
 }
 
 const germany = function(x, y) {
@@ -213,12 +238,12 @@ const _main = function() {
 
     // penta1(0, 0, 50) // 五角星函数
 
-     china(-200, -160) // 国旗
+    //  china(-200, -160) // 国旗
 
     //  france(-100, -150) // 法国国旗
 
     //  germany(-100, -150) // 画德国国旗
 
-    // gambia(-100, -100)
+    gambia(-100, -100)
 }
 _main()
