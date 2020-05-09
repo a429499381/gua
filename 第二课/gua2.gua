@@ -111,7 +111,7 @@ var penta1 = function(x, y, r) {
 const china = function(x, y) {
     var w = 300
     var h = 200
-    var r = 20
+    var r = 10
     var x1 = x + w / 2
     var y1 = y + h / 2
     var n = 4
@@ -119,17 +119,17 @@ const china = function(x, y) {
     jump(x, y)
     polygon1(w, h, n)
 
-    // const wxBig = function(x, y, r) {
-    //     cn -= 1
-    //     var xb = x + 20
-    //     var yb = y + 20
-
-    //     penta1(xb, yb, r)
-    // } 
-
-    // wxBig(x, y, 30)
+    const wxBig = function(x, y, r) {
+        cn -= 1
+        var xb = x + 15 + r * 3
+        var yb = y + 15 + r 
+        penta1(xb, yb, r)
+    } 
+    
+    wxBig(x, y, 30)
     while(cn > 0) {
         cn -= 1
+        setHeading(15)
         penta1(x1, y1, r)
         x1 = x1 + 20 * 2
     }
@@ -213,12 +213,12 @@ const _main = function() {
 
     // penta1(0, 0, 50) // 五角星函数
 
-    //  china(-200, -160) // 国旗
+     china(-200, -160) // 国旗
 
     //  france(-100, -150) // 法国国旗
 
     //  germany(-100, -150) // 画德国国旗
 
-    gambia(-100, -100)
+    // gambia(-100, -100)
 }
 _main()
