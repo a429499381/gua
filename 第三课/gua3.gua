@@ -1,0 +1,131 @@
+const test = function(ok, err) {
+    if(ok) {
+        log('测试OK')
+    } else {
+        log('测试错误', err)
+    }
+}
+
+// 求数组的和
+const sum = function(array) {
+    // 先设置一个变量 s 用来存数组的和
+    var s = 0
+    var i = 0
+    while (i < array.length()) {
+        var n = array[i]
+        s = s + n
+        i = i + 1
+    }
+    return s
+}
+//  求 array 的乘积 
+const product = function(array) {
+    var reslut = 1
+    var n = 0
+
+    while(n < array.length()) {
+        var temp = array[n]
+        if(temp == 0) {
+            // temp = 1
+        }
+        reslut *= temp
+        
+        n += 1
+    }
+    log('result', reslut)
+    return reslut
+}
+
+//返回一个数字的绝对值
+const abs = function(n) {
+    var result = n
+    if(n < 0) {
+        result = -result
+    } 
+    return result
+
+}
+
+const test_abs = function() {
+    test(abs(-1) == 1, 1)
+    test(abs(-0) == 0, 2)
+    test(abs(13) == 13, 3)
+    test(abs(8) == 8, 4)
+}
+
+// 求 array 中所有数字的平均数
+const average = function(array) {
+    var num = array.length()
+    var total = sum(array) 
+    var reslut = total / num
+    return reslut
+}
+
+const test_average = function() {
+    test(average([-1,2,3,4,5]) == 2.6 , 1)
+    test(average([1, 2, 4, 2, 1]) == 2 , 2)
+}
+
+// 求 array 中最小的数字
+const min = function(array) {
+    var result = array[0]
+    var n = array.length() - 1
+
+    while(n > 0) {
+        if(result > array[n]) {
+            result = array[n]
+        }
+
+        n -= 1
+    }   
+    return result  
+}
+
+const test_min = function() {
+    var arr1 = [1, 2, -4, 2, 1]
+    var arr2 = [1, 2, 4, 2, -1]
+
+    test(min(arr1) == -4, 1)
+    test(min(arr2) == -1, 2)
+}
+
+// 参数是一个数字 n
+// 返回以下序列的结果
+// 1 - 2 + 3 - 4 + 5 ... n
+const sum1 = function(n) {
+    var long = 1
+    var num = 2
+    var string = '1'
+
+    const numToStr = function(number) {
+        var s =  str(number) // 数字转字符
+        // log('str num', s)
+        return s
+    }
+    while(long < n) {
+        if(long % 2) {
+            string += '-' + numToStr(num)
+        } else {
+            string += '+' + numToStr(num)
+        }
+         num += 1  
+         long += 1 // 循环减去 
+    }
+
+    log('str', string)
+    return string
+}
+
+
+const _main = function() {
+     var arr = [1, 2, -4, 2, 1]
+    //  product(arr)
+    // test_abs()
+//    test_average()
+    // test_min()
+
+    sum1(15)
+}
+
+
+_main() 
