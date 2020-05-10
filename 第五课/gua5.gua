@@ -381,21 +381,23 @@ const strip_left = function(s) {
     // 返回 string
     var str = s
     var n = 0
-    var space = '1'
-    
+    var space = ' '
+    var index = 0 //要截取字符串的下标
+    var isSpace =  is_space(str)
+
+    if(isSpace) {
+        // 如果字符串都是空格 就返回 空
+        return ''
+    }
     while(n < str.length()) {
-        log('str[n]',  str[n])
-    
-        if(str[n] ==  space) {
-            str = str.cut(n + 1)
-            log('str is space', str)
-        } else {
-            log('不是空格')
-            return str.cut[n]
-        }
+        if( str[n] != space) {
+            index = n
+            break
+        } 
         n += 1
     }
-    return str
+    // log('index', str.cut(index), index)
+    return str.cut(index)
     // 实现步骤
     // 从左侧遍历字符串, 记录第一个非空格字符的位置, 并由此切割字符串
     // 1. 使用作业 5 的 is_space 函数来判断 s 是否只包含空格，
@@ -406,10 +408,10 @@ const strip_left = function(s) {
 
 // 测试函数
 const test_strip_left = function() {
-    // ensure(strip_left('  gua') == 'gua', 'strip_left 测试 1')
-    ensure(strip_left('111gua111') == 'gua  ', 'strip_left 测试 2')
-    // ensure(strip_left('') == '', 'strip_left 测试 3')
-    // ensure(strip_left('    ') == '', 'strip_left 测试 4')
+    ensure(strip_left('  gua') == 'gua', 'strip_left 测试 1')
+    ensure(strip_left(' gua  ') == 'gua  ', 'strip_left 测试 2')
+    ensure(strip_left('') == '', 'strip_left 测试 3')
+    ensure(strip_left('    ') == '', 'strip_left 测试 4')
 }
 
 // test_strip_left()
@@ -422,6 +424,25 @@ const strip_right = function(s) {
     // 返回一个「删除了字符串末尾的所有空格」的字符串
 
     // 返回 string
+    var str = s
+    var n = str.length() - 1
+    var space = ' '
+    var index = str.length() //要截取字符串的下标
+    var isSpace =  is_space(str)
+
+    if(isSpace) {
+        // 如果字符串都是空格 就返回 空
+        return ''
+    }
+    while(n > 0) {
+        if( str[n] != space) {
+            index = n + 1
+            break
+        } 
+        n -= 1
+    }
+    // log('index', str.cut(0,index), index)
+    return str.cut(0,index)
 
     // 提示:
     // 类似于作业 7
@@ -452,7 +473,10 @@ const strip = function(s) {
     // 返回一个「删除了字符串首尾的所有空格」的字符串
 
     // 返回 string
+    var strLeft = strip_left(s)
+    var strRight = strip_right(strLeft)
 
+    return strRight
     // 提示:
     // 依次调用作业 7 和作业 8 中的函数即可
 
@@ -481,6 +505,23 @@ const replace = function(s, old_str, new_str) {
     // 假设 old 存在并且只出现一次
 
     // 返回 string
+    var str = s
+    var old = old_str
+    var new = new_str
+    var n = 0
+    var index =  []
+
+    while(n < old.length()) {
+       var t = find(s, old[n])
+        index.add(t)
+        n += 1         
+    }
+    var end = index.length() - 1
+    var left = s.cut(0,index[0])
+    var right = s.cut(index[end])
+    var result = left + new + right
+
+    return result
 
     // 提示:
     // 找到指定旧字符串的起始下标, 将其前后字符串与新字符串进行拼接
@@ -513,8 +554,11 @@ const _main = function() {
     // test_is_space()
     // test_is_digit()
 
+    // test_strip_left()
+    // test_strip_right()
+    // test_strip()
 
-    test_strip_left()
+    test_replace()
 
 }
 _main()
